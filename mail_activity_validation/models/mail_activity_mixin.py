@@ -1,7 +1,7 @@
-# Copyright 2021 Camptocamp SA
+# Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, fields, models
+from odoo import models
 
 
 class MailActivityMixin(models.AbstractModel):
@@ -10,7 +10,8 @@ class MailActivityMixin(models.AbstractModel):
     def check_validation_activities_todo(self):
         for rec in self:
             remaining_activities = rec.activity_ids.filtered(
-                lambda a: a.activity_category == "validation")
+                lambda a: a.activity_category == "validation"
+            )
 
             if remaining_activities:
                 return False
